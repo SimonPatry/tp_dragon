@@ -1,3 +1,4 @@
+const  HtmlWebpackPlugin = require("html-webpack-plugin");
 // pour créer un chemin absolu pour webpack
 const path = require('path'); 
 
@@ -6,7 +7,7 @@ module.exports = {
     // précise que l'on est en mode développement
     mode : "development",
     // Point d'entrée
-    entry: ['babel-plyfill', './app.js' ],
+    entry: ['babel-polyfill', './app.js' ],
     // Sortie
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -27,7 +28,8 @@ module.exports = {
             },
         ],
     },
-    
+    // plugins
+    plugins: [new HtmlWebpackPlugin({ template: "./dist/index.html" })],
     // Configuration de webpack-dev-server minimale
     devServer: {
         port : 3000,
