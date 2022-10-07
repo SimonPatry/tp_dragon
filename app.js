@@ -1,12 +1,15 @@
 import dragons from "./assets/dragons.js"
 import relationships from "./assets/relationships.js"
+import forces from "./assets/forces.js"
 
 const drag = dragons;
 const relations = relationships;
+const force = forces;
 
 function addDragon(dragon) {
     const mainUL = document.getElementById('listDragon');
 
+    if(!mainUL) return;
     const nameLi = document.createElement("li");
     nameLi.setAttribute('id', `D${dragon.id}`);
     nameLi.innerHTML = dragon.name;
@@ -26,9 +29,9 @@ function addDragon(dragon) {
 function addRelations(rela) {
     const nameLi = document.getElementById(`D${rela.id}`);
 
+    if(!nameLi) return;
     const relationUl = document.createElement("ul");
-    nameLi.appendChild(relationUl);
-
+    
     const relationLi = document.createElement("li");
 
     let namesRela = [];
@@ -42,15 +45,22 @@ function addRelations(rela) {
     }
 
     relationLi.innerHTML = `Relations: ${namesRela.join(', ')}`;
+
     relationUl.appendChild(relationLi)
+    nameLi.appendChild(relationUl);
 }
 
 function addStrength(force) {
-    const aveStrength = [];
+    const nameLi = document.getElementById(`D${force.id}`);
 
-    forces.forEach((relation => {
-        aveStrength.push({ id: relation.id, force: average(relation.notes) });
-    }))
+    if(!nameLi) return;
+    const forceUl = document.createElement("ul");
+
+    const forceLi = document.createElement("li");
+    forceLi.innerHTML = `Force: ${average(force.notes)}`;
+
+    forceUl.appendChild(forceLi)
+    nameLi.appendChild(forceUl);
 }
 
 function average(notes) {
@@ -64,6 +74,10 @@ function loadNormalList() {
 
     for (let i = 0; i < relations.length; i++) {
         addRelations(relations[i]);
+    }
+
+    for (let i = 0; i < force.length; i++) {
+        addStrength(force[i]);
     }
 }
 
