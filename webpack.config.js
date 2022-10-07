@@ -5,12 +5,29 @@ module.exports = {
     // watch: true, // inutile avec le server webpack
     // précise que l'on est en mode développement
     mode : "development",
-    entry: './app.js', // Point d'entrée
+    // Point d'entrée
+    entry: ['babel-plyfill', './app.js' ],
     // Sortie
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: "bundle.js"
     },
+    
+    module: {
+        rules: [
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                    presets: ["@babel/preset-env"],
+                    },
+                },
+            },
+        ],
+    },
+    
     // Configuration de webpack-dev-server minimale
     devServer: {
         port : 3000,
