@@ -13,8 +13,7 @@ module.exports = {
     },
     // Configuration de webpack-dev-server minimale
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        port : 9000,
+        port : 3000,
         open: true,
         hot : true // reload automatique
     }
