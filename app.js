@@ -14,26 +14,20 @@ const relationships =  [
     { id: 3, relations : [2] }
 ]
 
+
 function coucou(){
     console.log("coucou");
 };
 
 function average(notes){
-    console.log(notes);
-    return `${Math.floor(notes.reduce((acc, curr) => acc + curr, 0) / notes.length * 100)/100}`;
+    return Math.floor(notes.reduce((acc, curr) => acc + curr, 0) / notes.length * 100)/100;
 }
 
-function dragonForce(dragon){
-    let str = "";
-    forces.forEach((relation => {
-        if (relation.id === dragon.id){
-            console.log(relation);
-            str += average(relation.notes);
-        }
-    }))
-    console.log(str);
-    return str;
-}
+const aveStrength = [];
+
+forces.forEach((relation => {
+    aveStrength.push({id : relation.id, force: average(relation.notes)});
+}))
 
 document.addEventListener("DOMContentLoaded", (event) => {
     
@@ -41,7 +35,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let dragonList = `<ul>`;
     for (const dragon of names){
         console.log(dragon);
-        dragonList +=`<li>name: ${dragon.name}, element: ${dragon.element ? dragon.element : "unknown"}, force: ${dragonForce(dragon)}</li>`;
+        dragonList +=`<li>name: ${dragon.name}, element: ${dragon.element ? dragon.element : "Unknown"}, force: ${aveStrength[dragon.id - 1].force}</li>`;
     }
     dragonList += '<ul>';
     dragonsDiv.innerHTML = dragonList;
