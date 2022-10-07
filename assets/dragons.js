@@ -1,8 +1,8 @@
 const dragons = {
     names: [
         { id: 1, name: "Apalala", element : 'fire' },
-        { id: 2, name: "Balaur", element : 'water' },
-        { id: 3, name: "Bolla" }
+        { id: 3, name: "Bolla" },
+        { id: 2, name: "Balaur", element : 'water' }
     ],
     count: 3,
 }
