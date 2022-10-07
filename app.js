@@ -2,6 +2,12 @@ import dragons from "./assets/dragons.js"
 
 const drag = dragons;
 
+function coucou(){
+    console.log("coucou");
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
-    // appel de votre fonction addDragons avec ses paramètres
+    
+    document.getElementById("btn").addEventListener("click", coucou)
+ 
 });
